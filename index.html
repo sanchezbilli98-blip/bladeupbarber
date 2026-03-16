@@ -1,258 +1,160 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="de">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>BladeUp Barber | Barbería Moderna</title>
-
-<meta name="description" content="BladeUp Barber - Moderne Haarschnitte für Männer in Basel. Reserva tu cita online.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BladeUp Barber Basel</title>
 
 <style>
 
 body{
-margin:0;
 font-family:Arial;
-background:#0a0a0a;
-color:white;
-}
-
-header{ <select onchange="changeLanguage(this.value)">
-<option value="de">Deutsch</option>
-<option value="es">Español</option>
-</select>
 background:black;
-padding:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:3px solid #FFD000;
-}
-
-.logo{
-font-size:26px;
-font-weight:bold;
-color:#FFD000;
-}
-
-nav a{
-margin:0 10px;
 color:white;
-text-decoration:none;
-}
-
-.hero{
 text-align:center;
-padding:120px 20px;
-background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438");
-background-size:cover;
+margin:0;
 }
 
-.hero h1{
-font-size:50px;
-}
-
-.button{
-background:#FFD000;
-color:black;
-padding:15px 30px;
-border-radius:6px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.section{
-padding:60px 20px;
-text-align:center;
-}
-
-.cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-}
-
-.card{
+header{
 background:#111;
-padding:25px;
-border-radius:10px;
-border:2px solid #FFD000;
-width:220px;
+padding:20px;
 }
 
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
+h1{
+color:#FFD700;
 }
 
-.gallery img{
-width:100%;
-border-radius:8px;
+.container{
+padding:30px;
 }
 
-footer{
-background:black;
-padding:40px;
-text-align:center;
-border-top:2px solid #FFD000;
+select,input{
+padding:10px;
+margin:10px;
+width:250px;
 }
 
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
+button{
+background:#FFD700;
+border:none;
 padding:15px;
-border-radius:50%;
-font-size:22px;
-text-decoration:none;
+font-size:16px;
+cursor:pointer;
+}
+
+.lang{
+position:absolute;
+top:20px;
+right:20px;
 }
 
 </style>
-
 </head>
-<script>
-function changeLanguage(lang){
-if(lang === "es"){
-document.body.innerHTML = document.body.innerHTML
-.replace("Moderne Haarschnitte für Männer in Basel","Cortes modernos para hombres en Basel")
-.replace("Dienstleistungen","Servicios")
-.replace("Preise","Precios")
-.replace("Kontakt","Contacto");
-}
-}
-</script>
+
 <body>
 
+<div class="lang">
+<select onchange="changeLang(this.value)">
+<option value="de">Deutsch</option>
+<option value="es">Español</option>
+</select>
+</div>
+
 <header>
-
-<div class="logo">BladeUp Barber</div>
-
-<nav>
-<a href="#servicios">Servicios</a>
-<a href="#galeria">Cortes</a>
-<a href="#precios">Precios</a>
-<a href="#contacto">Contacto</a>
-</nav>
-
+<h1>BladeUp Barber</h1>
+<p id="subtitle">Moderne Haarschnitte für Männer in Basel</p>
 </header>
 
-<section class="hero">
+<div class="container">
 
-<h1>🔥 20% Descuento Primera Visita</h1>
+<h2 id="bookingTitle">Termin buchen</h2>
 
-<p>Cortes modernos para hombres en Zúrich</p>
+<div>
+<label id="barberLabel">Barbier wählen</label><br>
+<select id="barber">
+<option>Jhay Sánchez</option>
+</select>
+</div>
+
+<div>
+<label id="serviceLabel">Service wählen</label><br>
+<select id="service">
+<option>Haarschnitt</option>
+<option>Haarschnitt + Bart</option>
+<option>Bart</option>
+<option>Kinderhaarschnitt</option>
+<option>Beratung</option>
+</select>
+</div>
+
+<div>
+<label id="dateLabel">Datum wählen</label><br>
+<input type="date" id="date">
+</div>
+
+<div>
+<label id="timeLabel">Uhrzeit wählen</label><br>
+<input type="time" id="time">
+</div>
 
 <br>
 
-<a class="button" href="https://wa.me/41779621095">Reservar por WhatsApp</a>
-
-</section>
-
-<section id="servicios" class="section">
-
-<h2>Servicios</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Corte Hombre</h3>
-<p>35 CHF</p>
-</div>
-
-<div class="card">
-<h3>Hombre + Barba</h3>
-<p>45 CHF</p>
-</div>
-
-<div class="card">
-<h3>Barba</h3>
-<p>15 CHF</p>
-</div>
-
-<div class="card">
-<h3>Niños</h3>
-<p>25 CHF</p>
-</div>
+<button onclick="sendWhatsApp()" id="bookBtn">
+Termin über WhatsApp buchen
+</button>
 
 </div>
 
-</section>
+<script>
 
-<section id="galeria" class="section">
+function sendWhatsApp(){
 
-<h2>Estilos de Corte</h2>
+let barber=document.getElementById("barber").value;
+let service=document.getElementById("service").value;
+let date=document.getElementById("date").value;
+let time=document.getElementById("time").value;
 
-<div class="gallery">
+let msg=`Hallo! Ich möchte einen Termin buchen.%0A
+Barbier: ${barber}%0A
+Service: ${service}%0A
+Datum: ${date}%0A
+Uhrzeit: ${time}`;
 
-<img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033">
-<img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70">
-<img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b">
-<img src="https://images.unsplash.com/photo-1593702288056-f23a9c51d95c">
+let phone="41779621095";
 
-</div>
+window.open(`https://wa.me/${phone}?text=${msg}`,"_blank");
 
-</section>
+}
 
-<section id="precios" class="section">
+function changeLang(lang){
 
-<h2>Suscripciones</h2>
+if(lang=="es"){
 
-<div class="cards">
+document.getElementById("subtitle").innerText="Cortes modernos para hombres en Basel";
+document.getElementById("bookingTitle").innerText="Reservar cita";
+document.getElementById("barberLabel").innerText="Elegir barbero";
+document.getElementById("serviceLabel").innerText="Elegir servicio";
+document.getElementById("dateLabel").innerText="Elegir fecha";
+document.getElementById("timeLabel").innerText="Elegir hora";
+document.getElementById("bookBtn").innerText="Reservar por WhatsApp";
 
-<div class="card">
-<h3>Mensual</h3>
-<p>120 CHF</p>
-</div>
+}
 
-<div class="card">
-<h3>Trimestral</h3>
-<p>325 CHF</p>
-</div>
+if(lang=="de"){
 
-<div class="card">
-<h3>Anual</h3>
-<p>1212 CHF</p>
-</div>
+document.getElementById("subtitle").innerText="Moderne Haarschnitte für Männer in Basel";
+document.getElementById("bookingTitle").innerText="Termin buchen";
+document.getElementById("barberLabel").innerText="Barbier wählen";
+document.getElementById("serviceLabel").innerText="Service wählen";
+document.getElementById("dateLabel").innerText="Datum wählen";
+document.getElementById("timeLabel").innerText="Uhrzeit wählen";
+document.getElementById("bookBtn").innerText="Termin über WhatsApp buchen";
 
-</div>
+}
 
-</section>
+}
 
-<section class="section">
-
-<h2>Horario</h2>
-
-<p>Martes - Domingo</p>
-
-<p>9:00 - 12:00</p>
-
-<p>13:00 - 21:00</p>
-
-</section>
-
-<section id="contacto" class="section">
-
-<h2>Contacto</h2>
-
-<p>📞 +41 77 962 10 95</p>
-
-<p>📧 Fernandezvalenino636@gmail.com</p>
-
-</section>
-
-<footer>
-
-<p>© 2026 BladeUp Barber</p>
-
-</footer>
-
-<a class="whatsapp" href="https://wa.me/41779621095">💬</a>
+</script>
 
 </body>
 </html>
-

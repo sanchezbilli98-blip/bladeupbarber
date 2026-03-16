@@ -18,7 +18,10 @@ background:#0a0a0a;
 color:white;
 }
 
-header{
+header{ <select onchange="changeLanguage(this.value)">
+<option value="de">Deutsch</option>
+<option value="es">Español</option>
+</select>
 background:black;
 padding:20px;
 display:flex;
@@ -112,7 +115,17 @@ text-decoration:none;
 </style>
 
 </head>
-
+<script>
+function changeLanguage(lang){
+if(lang === "es"){
+document.body.innerHTML = document.body.innerHTML
+.replace("Moderne Haarschnitte für Männer in Basel","Cortes modernos para hombres en Basel")
+.replace("Dienstleistungen","Servicios")
+.replace("Preise","Precios")
+.replace("Kontakt","Contacto");
+}
+}
+</script>
 <body>
 
 <header>

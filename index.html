@@ -3,158 +3,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BladeUp Barber Basel</title>
+<title>BladeUp Barber</title>
 
 <style>
-
-body{
-font-family:Arial;
-background:black;
-color:white;
-text-align:center;
-margin:0;
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0d0d0d;
+    color: white;
 }
 
-header{
-background:#111;
-padding:20px;
+header {
+    background: black;
+    padding: 20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    position: relative;
 }
 
-h1{
-color:#FFD700;
+.lang {
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
 
-.container{
-padding:30px;
+button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    cursor: pointer;
 }
 
-select,input{
-padding:10px;
-margin:10px;
-width:250px;
+.hero {
+    background: url('img/corte1.jpg') center/cover no-repeat;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-button{
-background:#FFD700;
-border:none;
-padding:15px;
-font-size:16px;
-cursor:pointer;
+.btn {
+    padding: 15px 30px;
+    background: gold;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
-.lang{
-position:absolute;
-top:20px;
-right:20px;
+.section {
+    padding: 50px;
+    text-align: center;
 }
 
+.gallery img {
+    width: 300px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+}
+
+input, select {
+    margin: 10px 0;
+    padding: 10px;
+}
 </style>
-</head>
-
-<body>
-
-<div class="lang">
-<select onchange="changeLang(this.value)">
-<option value="de">Deutsch</option>
-<option value="es">Español</option>
-</select>
-</div>
-
-<header>
-<h1>BladeUp Barber</h1>
-<p id="subtitle">Moderne Haarschnitte für Männer in Basel</p>
-</header>
-
-<div class="container">
-
-<h2 id="bookingTitle">Termin buchen</h2>
-
-<div>
-<label id="barberLabel">Barbier wählen</label><br>
-<select id="barber">
-<option>Jhay Sánchez</option>
-</select>
-</div>
-
-<div>
-<label id="serviceLabel">Service wählen</label><br>
-<select id="service">
-<option>Haarschnitt</option>
-<option>Haarschnitt + Bart</option>
-<option>Bart</option>
-<option>Kinderhaarschnitt</option>
-<option>Beratung</option>
-</select>
-</div>
-
-<div>
-<label id="dateLabel">Datum wählen</label><br>
-<input type="date" id="date">
-</div>
-
-<div>
-<label id="timeLabel">Uhrzeit wählen</label><br>
-<input type="time" id="time">
-</div>
-
-<br>
-
-<button onclick="sendWhatsApp()" id="bookBtn">
-Termin über WhatsApp buchen
-</button>
-
-</div>
 
 <script>
-
-function sendWhatsApp(){
-
-let barber=document.getElementById("barber").value;
-let service=document.getElementById("service").value;
-let date=document.getElementById("date").value;
-let time=document.getElementById("time").value;
-
-let msg=`Hallo! Ich möchte einen Termin buchen.%0A
-Barbier: ${barber}%0A
-Service: ${service}%0A
-Datum: ${date}%0A
-Uhrzeit: ${time}`;
-
-let phone="41779621095";
-
-window.open(`https://wa.me/${phone}?text=${msg}`,"_blank");
-
+function cambiarIdioma(idioma) {
+    document.querySelectorAll("[data-es]").forEach(el => {
+        el.innerText = idioma === "es" ? el.getAttribute("data-es") : el.getAttribute("data-de");
+    });
 }
-
-function changeLang(lang){
-
-if(lang=="es"){
-
-document.getElementById("subtitle").innerText="Cortes modernos para hombres en Basel";
-document.getElementById("bookingTitle").innerText="Reservar cita";
-document.getElementById("barberLabel").innerText="Elegir barbero";
-document.getElementById("serviceLabel").innerText="Elegir servicio";
-document.getElementById("dateLabel").innerText="Elegir fecha";
-document.getElementById("timeLabel").innerText="Elegir hora";
-document.getElementById("bookBtn").innerText="Reservar por WhatsApp";
-
-}
-
-if(lang=="de"){
-
-document.getElementById("subtitle").innerText="Moderne Haarschnitte für Männer in Basel";
-document.getElementById("bookingTitle").innerText="Termin buchen";
-document.getElementById("barberLabel").innerText="Barbier wählen";
-document.getElementById("serviceLabel").innerText="Service wählen";
-document.getElementById("dateLabel").innerText="Datum wählen";
-document.getElementById("timeLabel").innerText="Uhrzeit wählen";
-document.getElementById("bookBtn").innerText="Termin über WhatsApp buchen";
-
-}
-
-}
-
 </script>
+
+</head>
+<body>
+
+<header>
+BladeUp Barber 💈
+
+<div class="lang">
+    <button onclick="cambiarIdioma('de')">DE</button>
+    <button onclick="cambiarIdioma('es')">ES</button>
+</div>
+</header>
+
+<section class="hero">
+    <h1 data-de="Dein bester Haarschnitt beginnt hier" data-es="Tu mejor corte empieza aquí"></h1>
+    <a href="#reserva" class="btn" data-de="Termin buchen" data-es="Reservar cita"></a>
+</section>
+
+<section class="section">
+    <h2 data-de="Dienstleistungen" data-es="Servicios"></h2>
+    <p data-de="Haarschnitt — 35 CHF" data-es="Corte — 35 CHF"></p>
+    <p data-de="Bart — 15 CHF" data-es="Barba — 15 CHF"></p>
+    <p data-de="Haarschnitt + Bart — 35 CHF" data-es="Corte + Barba — 35 CHF"></p>
+</section>
+
+<section class="section">
+    <h2 data-de="Dein Barbier" data-es="Tu barbero"></h2>
+    <p>Ian Sanchez</p>
+</section>
+
+<section class="section gallery">
+    <h2 data-de="Galerie" data-es="Galería"></h2>
+    <img src="img/corte1.jpg">
+    <img src="img/corte2.jpg">
+    <img src="img/corte3.jpg">
+</section>
+
+<section class="section" id="reserva">
+    <h2 data-de="Termin buchen" data-es="Reservar cita"></h2>
+
+    <form action="https://formsubmit.co/bladeupbarber@gmail.com" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre / Name" required>
+
+        <select name="servicio">
+            <option>Haarschnitt / Corte</option>
+            <option>Bart / Barba</option>
+            <option>Haarschnitt + Bart</option>
+        </select>
+
+        <select name="barbero">
+            <option>Ian Sanchez</option>
+        </select>
+
+      <input type="time" name="hora" required
+       min="10:00" max="21:00"
+       step="900"
+       list="horarios">
+<datalist id="horarios">
+  <!-- Mañana: 10:00 a 12:00 -->
+  <option value="10:00">
+  <option value="10:15">
+  <option value="10:30">
+  <option value="10:45">
+  <option value="11:00">
+  <option value="11:15">
+  <option value="11:30">
+  <option value="11:45">
+  <option value="12:00">
+
+  <!-- Tarde: 13:00 a 21:00 -->
+  <option value="13:00">
+  <option value="13:15">
+  <option value="13:30">
+  <option value="13:45">
+  <option value="14:00">
+  <option value="14:15">
+  <option value="14:30">
+  <option value="14:45">
+  <option value="15:00">
+  <option value="15:15">
+  <option value="15:30">
+  <option value="15:45">
+  <option value="16:00">
+  <option value="16:15">
+  <option value="16:30">
+  <option value="16:45">
+  <option value="17:00">
+  <option value="17:15">
+  <option value="17:30">
+  <option value="17:45">
+  <option value="18:00">
+  <option value="18:15">
+  <option value="18:30">
+  <option value="18:45">
+  <option value="19:00">
+  <option value="19:15">
+  <option value="19:30">
+  <option value="19:45">
+  <option value="20:00">
+  <option value="20:15">
+  <option value="20:30">
+  <option value="20:45">
+  <option value="21:00">
+</datalist>
+
+        <button class="btn" type="submit" data-de="Buchen" data-es="Reservar"></button>
+    </form>
+
+    <p data-de="Bezahlung im Geschäft nach dem Service" data-es="Pago en el local después del servicio"></p>
+</section>
 
 </body>
 </html>
